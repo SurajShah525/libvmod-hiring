@@ -73,5 +73,5 @@ const struct vmod_data Vmod_hiring_Data = {
 	.proto = Vmod_Proto,
 	.spec = Vmod_Spec,
 	.abi = VMOD_ABI_Version,
-	.file_id = "@ZRA@LVFNSDSETLSGHHVIAYVFXGPEIVN",
+	.file_id = "DSAJCKTJGOMEFDSF@UVETMKMFWRZOHBB",
 };
