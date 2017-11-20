@@ -1,0 +1,32 @@
+varnishtest "Test hiring vmod"
+
+server s1 {
+       rxreq
+       txresp
+} -start
+
+varnish v1 -vcl+backend {
+	import hiring from "${vmod_topbuild}/src/.libs/libvmod_hiring.so";
+	import std;
+	sub vcl_deliver {
+		set resp.http.count1 = hiring.count("test", "t");
+		std.log("INPUT1:"+"test,"+"t    "+"Output1"+resp.http.count1);
+		set resp.http.count2 = hiring.count("mississippi", "iss");
+		std.log("INPUT2:"+"mississippi,"+"iss    "+"Output2"+resp.http.count2);
+		set resp.http.count3 = hiring.count("hello", "x");
+		std.log("INPUT3:"+"hello,"+"x    "+"Output3"+resp.http.count3);
+		set resp.http.count4 = hiring.count("", "");
+		std.log("INPUT4:"+"'',"+"''    "+"Output4"+resp.http.count4);
+	}
+} -start
+
+client c1 {
+	txreq -url "/"
+	rxresp
+	expect resp.http.count1 == 2
+	expect resp.http.count2 == 2
+	expect resp.http.count3 == 0
+	expect resp.http.count4 == 0
+}
+
+client c1 -run

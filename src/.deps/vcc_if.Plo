@@ -1,0 +1,15 @@
+vcc_if.lo: vcc_if.c /usr/include/stdc-predef.h ../config.h \
+ /usr/include/varnish/vcl.h /usr/include/varnish/vrt.h vcc_if.h \
+ /usr/include/varnish/vmod_abi.h
+
+/usr/include/stdc-predef.h:
+
+../config.h:
+
+/usr/include/varnish/vcl.h:
+
+/usr/include/varnish/vrt.h:
+
+vcc_if.h:
+
+/usr/include/varnish/vmod_abi.h:
